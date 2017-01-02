@@ -20,6 +20,9 @@ CiDrawing is a vector graphics library for Android, it provides a custom view an
  * Text element
 
 ### Functions
+ * Different drawing type
+  * Vector mode
+  * Painting mode
  * Basic element transformation
   * Move
   * Rotate
@@ -46,7 +49,10 @@ CiDrawing is a vector graphics library for Android, it provides a custom view an
  * Element flip (based on reference point)
   * Horizontal
   * Vertical
-
+ * Element arrangement
+  * Forward / Backward
+  * Bring to Front / Send to Back
+  
 ## How to Use
 Include view in your layout as:
 ```xml

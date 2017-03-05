@@ -52,6 +52,7 @@ CiDrawing is a vector graphics library for Android, it provides a custom view an
  * Element arrangement
   * Forward / Backward
   * Bring to Front / Send to Back
+ * Import / Export
   
 ## How to Use
 Include view in your layout as:

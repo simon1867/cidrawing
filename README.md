@@ -9,49 +9,49 @@ CiDrawing is a vector graphics library for Android, it provides a custom view an
  * Stroke element (Pen)
  * Group element (Group/Ungroup)
  * Shape element
-  * Line
-  * Arc
-  * Rectangle
-  * Square
-  * Oval
-  * Circle
-  * Triangle (Isosceles triangle, Right triangle)
+   * Line
+   * Arc
+   * Rectangle
+   * Square
+   * Oval
+   * Circle
+   * Triangle (Isosceles triangle, Right triangle)
  * Photo element
  * Text element
 
 ### Functions
  * Different drawing type
-  * Vector mode
-  * Painting mode
+   * Vector mode
+   * Painting mode
  * Basic element transformation
-  * Move
-  * Rotate
-  * Resize
-  * Skew
-  * Re-Shape (Reset transformation without change drawing)
+   * Move
+   * Rotate
+   * Resize
+   * Skew
+   * Re-Shape (Reset transformation without change drawing)
  * Element selection (Single/Multiple)
-  * Rectangle select
-  * Oval select
-  * Lasso select
+   * Rectangle select
+   * Oval select
+   * Lasso select
  * Custom paint (Color, Width, Style, etc)
  * Multiple layer support
  * Unlimited undo/redo
  * Element group/ungroup
  * Eraser (Object eraser)
  * Path operation
-  * Union
-  * Intersect
-  * Different/Reserved Differernt
-  * Xor
+   * Union
+   * Intersect
+   * Different/Reserved Differernt
+   * Xor
  * Element alignment
-  * Horizontal (Left, Center, Right)
-  * Vertical (Top, Middle, Bottom)
+   * Horizontal (Left, Center, Right)
+   * Vertical (Top, Middle, Bottom)
  * Element flip (based on reference point)
-  * Horizontal
-  * Vertical
+   * Horizontal
+   * Vertical
  * Element arrangement
-  * Forward / Backward
-  * Bring to Front / Send to Back
+   * Forward / Backward
+   * Bring to Front / Send to Back
  * Import / Export
   
 ## How to Use

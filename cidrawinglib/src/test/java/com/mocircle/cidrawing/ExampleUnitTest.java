@@ -1,4 +1,4 @@
-package com.mocircle.cidrawingsample;
+package com.mocircle.cidrawing;
 
 import org.junit.Test;
 

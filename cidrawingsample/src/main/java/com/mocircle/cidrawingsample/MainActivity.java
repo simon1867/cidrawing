@@ -1,27 +1,33 @@
 package com.mocircle.cidrawingsample;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.ColorInt;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mocircle.cidrawing.ConfigManager;
 import com.mocircle.cidrawing.DrawingBoard;
@@ -380,28 +386,24 @@ public class MainActivity extends AppCompatActivity {
         drawingBoard.getOperationManager().executeOperation(new UngroupElementOperation());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void pathUnion(View v) {
         PathOperation operation = new PathOperation();
         operation.setPathOp(Path.Op.UNION);
         drawingBoard.getOperationManager().executeOperation(operation);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void pathIntersect(View v) {
         PathOperation operation = new PathOperation();
         operation.setPathOp(Path.Op.INTERSECT);
         drawingBoard.getOperationManager().executeOperation(operation);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void pathDifferent(View v) {
         PathOperation operation = new PathOperation();
         operation.setPathOp(Path.Op.DIFFERENCE);
         drawingBoard.getOperationManager().executeOperation(operation);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void pathXor(View v) {
         PathOperation operation = new PathOperation();
         operation.setPathOp(Path.Op.XOR);
@@ -684,7 +686,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exportPicture() {
-        //TODO task
+        Bitmap bitmap = drawingView.saveAsBitmap();
+
+        File file = new File(getFilesDir(), "image.jpg");
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            fileOutputStream.close();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        if (!file.exists()) {
+            throw new IllegalStateException("Failed to save file");
+        }
+
+        long size = file.length();
+
+        if (size <= 0) {
+            throw new IllegalStateException("Failed to save file");
+        }
+
+        Bitmap bitmap2 = BitmapFactory.decodeFile(file.getPath()).copy( Bitmap.Config.ARGB_8888 , true);
+
+        for (int i = 0; i < bitmap2.getWidth() - 1; i++) {
+            bitmap2.setPixel(i, 0, Color.BLUE);
+        }
+
+        for (int i = 0; i < bitmap2.getWidth() - 1; i++) {
+            bitmap2.setPixel(i, 3, Color.BLUE);
+        }
+
+        for (int i = 0; i < bitmap2.getWidth() - 1; i++) {
+            bitmap2.setPixel(i, 5, Color.BLUE);
+        }
+
+        for (int i = 0; i < bitmap2.getWidth() - 1; i++) {
+            bitmap2.setPixel(i, 7, Color.BLUE);
+        }
+
+        for (int i = 0; i < bitmap2.getWidth() - 1; i++) {
+            bitmap2.setPixel(i, 10, Color.BLUE);
+        }
+
+        drawingView.setBackground(new BitmapDrawable(getResources(), bitmap2));
     }
 
 }

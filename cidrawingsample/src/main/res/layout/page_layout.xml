@@ -166,10 +166,18 @@
             android:text="Style" />
     </LinearLayout>
 
-    <com.mocircle.cidrawing.view.CiDrawingView
-        android:id="@+id/drawing_view"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_layout"
-        android:layout_below="@id/top2_layout" />
+        android:layout_below="@id/top2_layout">
+
+        <com.mocircle.cidrawing.view.CiDrawingView
+            android:id="@+id/drawing_view"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
 </RelativeLayout>

@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(sdk = 21)
 public class ListUtilsTest {
 
     @Test

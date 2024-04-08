@@ -158,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
         drawingBoard.getDrawingContext().getPaint().setStrokeWidth(6);
         drawingBoard.getDrawingContext().setDrawingMode(new PointerMode());
 
+        drawingView.loadBackgroundImage("https://file-api-beta.busybusy.io/file/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmaWxlLWFwaSIsImZpbGVJZCI6ImE5YTEzZTUxLTQzYmQtNGY0OC05MDY4LWRlOGJmNjNhMzdlZCIsInNpZCI6IjEifQ.Qgt2vRcNYyhw2GKc9yvy9jKZqzXwyGCiXwLXJyGyf2Y?w=100&h=100");
+
         layerAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {

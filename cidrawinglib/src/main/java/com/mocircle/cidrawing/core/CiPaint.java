@@ -63,7 +63,6 @@ public class CiPaint extends Paint implements Persistable {
             object.put(KEY_ALPHA, this.getAlpha());
             object.put(KEY_STYLE, this.getStyle().toString());
             object.put(KEY_SECONDARY_COLOR, this.getSecondaryColor());
-            object.put(KEY_XFERMODE, getXfermodeAsInt(this.getXfermode()));
         } catch (JSONException e) {
             throw new PersistenceException(e);
         }
@@ -98,23 +97,6 @@ public class CiPaint extends Paint implements Persistable {
 
     @Override
     public void afterLoaded() {
-    }
-
-
-    private int getXfermodeAsInt(Xfermode mode) {
-        if (mode == null) {
-            return -1;
-        }
-        try {
-            Field field = Xfermode.class.getDeclaredField("porterDuffMode");
-            field.setAccessible(true);
-            return field.getInt(mode);
-        } catch (NoSuchFieldException e) {
-            CircleLog.w(TAG, e);
-        } catch (IllegalAccessException e) {
-            CircleLog.w(TAG, e);
-        }
-        return -1;
     }
 
     private Xfermode getXfermodeFromInt(int mode) {

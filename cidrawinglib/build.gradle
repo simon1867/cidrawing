@@ -18,8 +18,23 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     namespace 'com.mocircle.cidrawing'
 }
+
+tasks.register("sourcesJar", Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+artifacts {
+    archives sourcesJar
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

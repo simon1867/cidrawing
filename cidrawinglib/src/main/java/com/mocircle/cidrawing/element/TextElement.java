@@ -26,6 +26,8 @@ public class TextElement extends BoundsElement implements SupportVector {
 
     private Typeface typeface;
 
+    private float letterSpacing = 0;
+
 
     public TextElement() {
     }
@@ -39,6 +41,15 @@ public class TextElement extends BoundsElement implements SupportVector {
         calculateBoundingBox();
     }
 
+    public float getLetterSpacing() {
+        return letterSpacing;
+    }
+
+    public void setLetterSpacing(float letterSpacing) {
+        this.letterSpacing = letterSpacing;
+        setupPaint();
+    }
+
     public float getTextSize() {
         return textSize;
     }
@@ -46,6 +57,10 @@ public class TextElement extends BoundsElement implements SupportVector {
     public void setTextSize(float textSize) {
         this.textSize = textSize;
         setupPaint();
+    }
+
+    public Typeface getTypeface() {
+        return typeface;
     }
 
     public void setTypeface(Typeface typeface) {
@@ -126,11 +141,14 @@ public class TextElement extends BoundsElement implements SupportVector {
             TextElement obj = (TextElement) element;
             obj.text = text;
             obj.textSize = textSize;
+            obj.letterSpacing = letterSpacing;
+            obj.typeface = typeface;
         }
     }
 
     private void setupPaint() {
         paint.setTextSize(textSize);
+        paint.setLetterSpacing(letterSpacing);
 
         if (typeface != null) {
             paint.setTypeface(typeface);

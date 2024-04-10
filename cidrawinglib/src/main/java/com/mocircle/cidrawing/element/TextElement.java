@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 
 import com.mocircle.cidrawing.core.CiPaint;
 import com.mocircle.cidrawing.core.Vector2;
@@ -23,6 +24,9 @@ public class TextElement extends BoundsElement implements SupportVector {
     protected String text = "";
     protected float textSize;
 
+    private Typeface typeface;
+
+
     public TextElement() {
     }
 
@@ -41,6 +45,11 @@ public class TextElement extends BoundsElement implements SupportVector {
 
     public void setTextSize(float textSize) {
         this.textSize = textSize;
+        setupPaint();
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
         setupPaint();
     }
 
@@ -122,6 +131,10 @@ public class TextElement extends BoundsElement implements SupportVector {
 
     private void setupPaint() {
         paint.setTextSize(textSize);
+
+        if (typeface != null) {
+            paint.setTypeface(typeface);
+        }
     }
 
 }

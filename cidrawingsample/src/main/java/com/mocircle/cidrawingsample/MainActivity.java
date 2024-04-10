@@ -69,6 +69,7 @@ import com.mocircle.cidrawing.operation.PathOperation;
 import com.mocircle.cidrawing.operation.ReshapeOperation;
 import com.mocircle.cidrawing.operation.UngroupElementOperation;
 import com.mocircle.cidrawing.persistence.ExportData;
+import com.mocircle.cidrawing.view.CiDrawingOnImageView;
 import com.mocircle.cidrawing.view.CiDrawingView;
 
 import org.json.JSONException;
@@ -152,13 +153,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawingBoard() {
-        drawingView = (CiDrawingView) findViewById(R.id.drawing_view);
+        drawingView = findViewById(R.id.drawing_view);
         drawingBoard.setupDrawingView(drawingView);
         drawingBoard.getDrawingContext().getPaint().setColor(Color.BLACK);
         drawingBoard.getDrawingContext().getPaint().setStrokeWidth(6);
         drawingBoard.getDrawingContext().setDrawingMode(new PointerMode());
-
-        drawingView.loadBackgroundImage("https://file-api-beta.busybusy.io/file/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmaWxlLWFwaSIsImZpbGVJZCI6ImE5YTEzZTUxLTQzYmQtNGY0OC05MDY4LWRlOGJmNjNhMzdlZCIsInNpZCI6IjEifQ.Qgt2vRcNYyhw2GKc9yvy9jKZqzXwyGCiXwLXJyGyf2Y?w=100&h=100");
 
         layerAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override

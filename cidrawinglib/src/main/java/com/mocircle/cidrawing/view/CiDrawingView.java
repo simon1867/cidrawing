@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -17,7 +18,7 @@ import com.squareup.picasso.Target;
 /**
  * A view to provide drawing features.
  */
-public class CiDrawingView extends AppCompatImageView implements DrawingView {
+public class CiDrawingView extends View implements DrawingView {
 
     protected DrawingViewProxy viewProxy;
 
@@ -74,53 +75,6 @@ public class CiDrawingView extends AppCompatImageView implements DrawingView {
         draw(canvas);
 
         return bitmap;
-    }
-
-    public void loadBackgroundImage(String url) {
-        post(() -> {
-            int width = 0;
-            int height = 0;
-
-            // set the shortest width and leave the other dimension as 0 which
-            // tells Picasso to make it dynamic to keep the image ratio
-            if (getWidth() < getHeight()) {
-                width = getWidth();
-            } else {
-               height = getHeight();
-            }
-
-            Picasso.get()
-                    .load(url)
-                    .resize(width, height)
-                    .centerCrop()
-                    .into(new Target() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                            int w = bitmap.getWidth();
-                            int h = bitmap.getHeight();
-
-                            // update the size of the view to be the same as the image
-                            ViewGroup.LayoutParams params = getLayoutParams();
-                            params.height = h;
-                            params.width = w;
-
-                            setLayoutParams(params);
-                            requestLayout();
-
-                            setBackground(new BitmapDrawable(getResources(), bitmap));
-                        }
-
-                        @Override
-                        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                            e.printStackTrace();
-                        }
-
-                        @Override
-                        public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                        }
-                    });
-        });
     }
 
 }

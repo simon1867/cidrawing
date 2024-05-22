@@ -63,7 +63,7 @@ public class CiDrawingOnImageView extends FrameLayout implements DrawingView {
     }
 
     public void loadBackgroundImage(String url) {
-        handler.post(() -> {
+        handler.postDelayed(() -> {
             int width = 0;
             int height = 0;
 
@@ -106,7 +106,7 @@ public class CiDrawingOnImageView extends FrameLayout implements DrawingView {
 
                         }
                     });
-        });
+        }, 100);
     }
 
     public Bitmap saveAsBitmap() {

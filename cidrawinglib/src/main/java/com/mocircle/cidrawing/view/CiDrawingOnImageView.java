@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.squareup.picasso.Target;
 
 public class CiDrawingOnImageView extends FrameLayout implements DrawingView {
     CiDrawingView drawingView;
+    Handler handler = new Handler(Looper.getMainLooper());
 
     public CiDrawingOnImageView(@NonNull Context context) {
         super(context);
@@ -60,7 +63,7 @@ public class CiDrawingOnImageView extends FrameLayout implements DrawingView {
     }
 
     public void loadBackgroundImage(String url) {
-        post(() -> {
+        handler.post(() -> {
             int width = 0;
             int height = 0;
 
